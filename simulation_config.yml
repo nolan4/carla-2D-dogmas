@@ -15,9 +15,9 @@ max_substeps: 50 # max number of substeps used to advance physics (higher means 
 # map: '/Game/Carla/Maps/Town04_Opt' # this is a good one (has errors tho)
 # map: '/Game/Carla/Maps/Town06' # fav one
 # map: '/Game/Carla/Maps/Town05_Opt'
-map: '/Game/Carla/Maps/Town02' # very nice compact
+# map: '/Game/Carla/Maps/Town02' # very nice compact
 # map: '/Game/Carla/Maps/Town06_Opt'
-# map: '/Game/Carla/Maps/Town10HD'
+map: '/Game/Carla/Maps/Town10HD'
 # map: '/Game/Carla/Maps/Town01'
 # map: '/Game/Carla/Maps/Town04'
 # map: '/Game/Carla/Maps/Town07'
