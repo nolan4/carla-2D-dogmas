@@ -1,0 +1,176 @@
+
+seed: 4123
+fixed_delta_seconds: .1 # .016 # simulation time step (aka 1/FPS)
+max_substep_delta_time: .01 # max time step used in physics simulation
+max_substeps: 50 # max number of substeps used to advance physics (higher means more precise)
+# fixed_delta_seconds <= max_substep_delta_time * max_substeps
+
+# map: '/Game/Carla/Maps/Town01'
+# map: '/Game/Carla/Maps/Town02_Opt'
+# map: '/Game/Carla/Maps/Town03_Opt'
+# map: '/Game/Carla/Maps/Town07_Opt'
+# map: /Game/Carla/Maps/Town10HD_Opt'
+# map: '/Game/Carla/Maps/Town01_Opt'
+# map: '/Game/Carla/Maps/Town05'
+# map: '/Game/Carla/Maps/Town04_Opt' # this is a good one (has errors tho)
+# map: '/Game/Carla/Maps/Town06' # fav one
+# map: '/Game/Carla/Maps/Town05_Opt'
+map: '/Game/Carla/Maps/Town02' # very nice compact
+# map: '/Game/Carla/Maps/Town06_Opt'
+# map: '/Game/Carla/Maps/Town10HD'
+# map: '/Game/Carla/Maps/Town01'
+# map: '/Game/Carla/Maps/Town04'
+# map: '/Game/Carla/Maps/Town07'
+# map: '/Game/Carla/Maps/Town03'
+# map: '/Game/Carla/Maps/Town12/Town12'
+# map: '/Game/Carla/Maps/Town11/Town11'
+
+traffic_agents: 50
+exiled_vehicles: ['vehicle.carlamotors.firetruck', 'vehicle.mitsubishi.fusorosa', 'vehicle.vespa.zx125', 'vehicle.harley-davidson.low_rider']
+autopilot: True
+traffic_manager:
+  distance_to_leading_vehicle: 5
+  vehicle_percentage_speed_difference: 0
+  ignore_lights_percentage: False
+  ignore_vehicles_percentage: False
+  auto_lane_change: True
+  random_right_lanechange_percentage: .01
+  random_left_lanechange_percentage: .01
+  
+# walker_agents: 25
+# walker_speed_max: 3
+
+ego_vehicle: 'vehicle.mercedes.coupe'
+ego_autopilot: True
+ego_save_path: './output/ego_data'
+
+
+  #      FRONT
+  #     _______
+  #   /->     <-\
+  #  |  ___1___  |
+  # O| \       / |O
+  #  |  \_____/  |
+  #  | 2       3 |
+  #  |     7     |
+  #  | 4 _____ 5 |
+  # O|  /_____\  |O
+  #  \ ____6____ /
+  # 
+  #        0        (8-BEV)
+
+  #      REAR
+
+
+sensors:
+# add a _N after each sensor.xxx.xxx to indicate cameras with different parameters
+
+  sensor.lidar.ray_cast_semantic:
+    location: 7
+    # save_path: './output/semantic_lidar'
+    save_path: './tmp'
+    channels: 32
+    range: 100
+    points_per_second: 1000000
+    # rotation_frequency: 60 # 1 revolution per frame (this should be equal to 1/fixed_delta_seconds
+    upper_fov: 0
+    # lower_fov: -30
+    lower_fov: -45
+    horizontal_fov: 360
+    sensor_tick: 0
+
+weather:
+  cloudiness: 20.0
+  precipitation: 00.0
+  precipitation_deposits: 0
+  wetness: 0
+  dust_storm: 0.0
+  wind_intensity: 0.0
+  sun_azimuth_angle: 0 # compass direction
+  sun_altitude_angle: 50 # angle above the horizon (60 - 120 for daylight)
+  scattering_intensity: 0 
+  rayleigh_scattering_scale: .05 # sunset effect (0 blue to 1 red sky)
+  fog_density: 0
+  fog_distance: 0
+  fog_falloff: 0
+
+dynamic_weather: False
+
+# Set period in terms of simulation time
+period_ticks_cloudiness: 1000
+period_ticks_precipitation: 1200
+period_ticks_precipitation_deposits: 1500
+period_ticks_sun_azimuth: 10000
+period_ticks_sun_altitude: 1800
+
+# Set the min and max values for each weather property
+min_max_cloudiness: [10, 20] #  0 - 100
+min_max_precipitation: [0, 10] #  0 - 100
+min_max_precipitation_deposits: [0, 10] #  0 - 100
+
+# Set the min and max values for sun azimuth and altitude angles
+min_max_sun_azimuth: [0, 360]  #  0 - 360
+min_max_sun_altitude: [-20, 20] # -90 - +90
+
+# MAPS
+# ['/Game/Carla/Maps/Town02_Opt', 
+#  '/Game/Carla/Maps/Town03_Opt', 
+#  '/Game/Carla/Maps/Town07_Opt', '
+#  /Game/Carla/Maps/Town10HD_Opt', 
+#  '/Game/Carla/Maps/Town01_Opt', 
+#  '/Game/Carla/Maps/Town05', 
+#  '/Game/Carla/Maps/Town04_Opt', 
+#  '/Game/Carla/Maps/Town06', 
+#  '/Game/Carla/Maps/Town05_Opt', 
+#  '/Game/Carla/Maps/Town02', 
+#  '/Game/Carla/Maps/Town06_Opt', 
+#  '/Game/Carla/Maps/Town10HD', 
+#  '/Game/Carla/Maps/Town01', 
+#  '/Game/Carla/Maps/Town04', 
+#  '/Game/Carla/Maps/Town07', 
+#  '/Game/Carla/Maps/Town03', 
+#  '/Game/Carla/Maps/Town12/Town12', 
+#  '/Game/Carla/Maps/Town11/Town11']
+
+
+# VEHICLES
+# ActorBlueprint(id=vehicle.audi.a2,tags=[a2, audi, vehicle])
+# ActorBlueprint(id=vehicle.citroen.c3,tags=[c3, citroen, vehicle])
+# ActorBlueprint(id=vehicle.chevrolet.impala,tags=[impala, chevrolet, vehicle])
+# ActorBlueprint(id=vehicle.dodge.charger_police_2020,tags=[charger_police_2020, dodge, vehicle])
+# ActorBlueprint(id=vehicle.micro.microlino,tags=[microlino, micro, vehicle])
+# ActorBlueprint(id=vehicle.dodge.charger_police,tags=[charger_police, dodge, vehicle])
+# ActorBlueprint(id=vehicle.audi.tt,tags=[tt, audi, vehicle])
+# ActorBlueprint(id=vehicle.jeep.wrangler_rubicon,tags=[wrangler_rubicon, jeep, vehicle])
+# ActorBlueprint(id=vehicle.mercedes.coupe,tags=[coupe, mercedes, vehicle])
+# ActorBlueprint(id=vehicle.mercedes.coupe_2020,tags=[coupe_2020, mercedes, vehicle])
+# ActorBlueprint(id=vehicle.harley-davidson.low_rider,tags=[low_rider, harley-davidson, vehicle])
+# ActorBlueprint(id=vehicle.dodge.charger_2020,tags=[charger_2020, dodge, vehicle])
+# ActorBlueprint(id=vehicle.ford.ambulance,tags=[ambulance, ford, vehicle])
+# ActorBlueprint(id=vehicle.lincoln.mkz_2020,tags=[mkz_2020, lincoln, vehicle])
+# ActorBlueprint(id=vehicle.mini.cooper_s_2021,tags=[mini, cooper_s_2021, vehicle])
+# ActorBlueprint(id=vehicle.toyota.prius,tags=[prius, toyota, vehicle])
+# ActorBlueprint(id=vehicle.ford.crown,tags=[crown, ford, vehicle])
+# ActorBlueprint(id=vehicle.carlamotors.carlacola,tags=[carlacola, carlamotors, vehicle])
+# ActorBlueprint(id=vehicle.vespa.zx125,tags=[zx125, vespa, vehicle])
+# ActorBlueprint(id=vehicle.nissan.patrol_2021,tags=[nissan, patrol_2021, vehicle])
+# ActorBlueprint(id=vehicle.mercedes.sprinter,tags=[sprinter, mercedes, vehicle])
+# ActorBlueprint(id=vehicle.audi.etron,tags=[etron, audi, vehicle])
+# ActorBlueprint(id=vehicle.seat.leon,tags=[leon, seat, vehicle])
+# ActorBlueprint(id=vehicle.volkswagen.t2_2021,tags=[t2_2021, volkswagen, vehicle])
+# ActorBlueprint(id=vehicle.tesla.cybertruck,tags=[cybertruck, tesla, vehicle])
+# ActorBlueprint(id=vehicle.lincoln.mkz_2017,tags=[mkz_2017, lincoln, vehicle])
+# ActorBlueprint(id=vehicle.ford.mustang,tags=[mustang, ford, vehicle])
+# ActorBlueprint(id=vehicle.carlamotors.firetruck,tags=[carlamotors, firetruck, vehicle])
+# ActorBlueprint(id=vehicle.volkswagen.t2,tags=[volkswagen, t2, vehicle])
+# ActorBlueprint(id=vehicle.mitsubishi.fusorosa,tags=[fusorosa, mitsubishi, vehicle])
+# ActorBlueprint(id=vehicle.tesla.model3,tags=[tesla, model3, vehicle])
+# ActorBlueprint(id=vehicle.diamondback.century,tags=[century, diamondback, vehicle])
+# ActorBlueprint(id=vehicle.gazelle.omafiets,tags=[omafiets, gazelle, vehicle])
+# ActorBlueprint(id=vehicle.bmw.grandtourer,tags=[grandtourer, bmw, vehicle])
+# ActorBlueprint(id=vehicle.bh.crossbike,tags=[crossbike, bh, vehicle])
+# ActorBlueprint(id=vehicle.kawasaki.ninja,tags=[ninja, kawasaki, vehicle])
+# ActorBlueprint(id=vehicle.nissan.patrol,tags=[patrol, nissan, vehicle])
+# ActorBlueprint(id=vehicle.nissan.micra,tags=[micra, nissan, vehicle])
+# ActorBlueprint(id=vehicle.mini.cooper_s,tags=[cooper_s, mini, vehicle])
+# ActorBlueprint(id=vehicle.yamaha.yzf,tags=[yzf, yamaha, vehicle])
