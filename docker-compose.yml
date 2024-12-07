@@ -1,0 +1,32 @@
+# https://antc2lt.medium.com/carla-simulator-in-docker-in-2023-1f11f240b2df
+
+version: '3.8' # version of docker-compose
+
+services: # tells you what services (containers) should be created
+  carla:
+    image: carlasim/carla:0.9.14
+    command: ["bash", "./CarlaUE4.sh", "-vulkan"] # command to be executed when container starts
+    runtime: nvidia
+    ports:
+     - "2000-2002:2000-2002"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - RESOLUTION=1920x1080
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - QT_X11_NO_MITSHM=1 # Fix a bug with QT
+      - SDL_VIDEODRIVER=x11
+    user: "${UID}"
+    volumes:
+      - ${HOME}/.Xauthority:/root/.Xauthority:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/group:/etc/group:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/shadow:/etc/shadow:ro
+      - /etc/sudoers:/etc/sudoers:ro
+      - /etc/sudoers.d:/etc/sudoers.d:ro
+      - /home/${USER}:/home/${USER}:rw #share your home with write permissions
+    privileged: true
+    network_mode: "host"
+    stdin_open: true
+    tty: true
