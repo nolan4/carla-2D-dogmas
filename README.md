@@ -1,5 +1,5 @@
 
-# Creating 2D Dynamic Occupancy Grids (DOGMa) from CARLA
+# Creating 2D dynamic occupancy grids (DOGMa) with data from the CARLA simulator
 
 <p align="center">
   <img src="./dogma_seq.gif" width="300" alt="Demo GIF">
