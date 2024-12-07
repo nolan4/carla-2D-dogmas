@@ -2,7 +2,7 @@
 
 A brief description of your project and its purpose.
 
-![Demo GIF](./dogma_gif)
+![Demo GIF](./dogma_seq.gif)
 
 ## Features
 
